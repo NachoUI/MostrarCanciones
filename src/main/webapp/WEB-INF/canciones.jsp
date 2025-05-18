@@ -29,6 +29,7 @@
 			  </div>
 			</div>
 		</c:forEach>
+			<a href="/canciones/formulario/agregar/${ultimaCancion.id}"> Agregar cancion </a>
 	</div>
 </div>
 

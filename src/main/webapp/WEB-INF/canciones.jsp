@@ -24,12 +24,25 @@
 			      <h5 class="card-title">${canciones.titulo}</h5>
 			      <p class="card-text"><strong>Banda:</strong> ${canciones.banda}</p>
 			      <p class="card-text"><strong>Album:</strong> ${canciones.album}</p>
-					<a href="/canciones/detalle/${canciones.id}"> Ver más </a>
+					<a href="/canciones/detalle/${canciones.id}"> Ver más </a>		
+					
+					<form action="/canciones/formulario/editar/${canciones.id}" method="GET">
+						<button>
+							Editar
+						</button>
+					</form>
+										
+	
+						
 			    </div>
 			  </div>
 			</div>
 		</c:forEach>
-			<a href="/canciones/formulario/agregar/${ultimaCancion.id}"> Agregar cancion </a>
+		<form action="/canciones/formulario/agregar/${ultimaCancion.id}">
+		<button>
+			Agregar
+		</button>	
+		</form>
 	</div>
 </div>
 

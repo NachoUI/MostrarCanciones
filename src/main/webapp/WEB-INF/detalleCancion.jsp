@@ -26,6 +26,10 @@
                 <p><strong>Fecha de Creación:</strong> ${cancion.fechaCreacion}</p>
                 <p><strong>Última Actualización:</strong> ${cancion.fechaActualizacion}</p>
                 <a href="/canciones" class="btn btn-outline-primary mt-3">Volver atrás</a>
+			<form action="/canciones/eliminar/${cancion.id}" method="POST">
+			    <input type="hidden" name="_method" value="DELETE">
+			    <button type="submit" class="btn btn-danger">Eliminar</button>
+			</form>	
             </div>
         </div>
     </div>

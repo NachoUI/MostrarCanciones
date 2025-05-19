@@ -14,4 +14,7 @@ public interface RepositorioCanciones extends CrudRepository<Cancion, Long>{
 	
 	
 	Cancion save(Cancion nuevaCancion);
+	
+	
+	void deleteById(Long id);
 }

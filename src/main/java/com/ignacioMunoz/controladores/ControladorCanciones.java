@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.ignacioMunoz.modelos.Cancion;
 import com.ignacioMunoz.servicios.ServicioCanciones;
@@ -49,6 +51,45 @@ public class ControladorCanciones {
 	}
 	
 	
+	@GetMapping("/canciones/formulario/editar/{idCancion}")
+	public String formularioEditarCancion(@PathVariable("idCancion") Long idCancion,
+											Model modelo) {
+		
+		Cancion cancion = this.servicioCanciones.obtenerCancionPorId(idCancion);
+		
+		if (cancion == null) {
+			return "redirect:/canciones"; 
+		}	
+		
+		modelo.addAttribute("cancion", cancion);
+		
+		return "editarCancion.jsp";
+	}
+	
+	
+	
+	
+	///canciones/formulario/editar/${cancion.id}
+	@PutMapping("canciones/formulario/editar/{cancionId}")
+	public String procesarEditarCancion(@Valid @ModelAttribute("cancion") Cancion cancion,
+										BindingResult validaciones,
+										@PathVariable("cancionId") Long cancionId
+			) {
+		
+		
+		if(validaciones.hasErrors()) {
+			return "editarCancion.jsp";
+		}
+		
+		
+		Cancion cancionActual = this.servicioCanciones.obtenerCancionPorId(cancionId);
+		cancion.setId(cancionActual.getId());
+		this.servicioCanciones.actualizarCancion(cancion);
+		return "redirect:/canciones";
+	}
+	
+	
+	
 	@GetMapping("/canciones/formulario/agregar/{idCancion}")
 	public String formularioAgregarCancion(@PathVariable("idCancion") Long idCancion, Model model) {
 	    Cancion cancionExistente = this.servicioCanciones.obtenerCancionPorId(idCancion);
@@ -83,6 +124,12 @@ public class ControladorCanciones {
 		
 		this.servicioCanciones.agregarCancion(nuevaCancion);
 		return "agregarCancion.jsp";
+	}
+	
+	@DeleteMapping("/canciones/eliminar/{cancionId}")
+	public String procesarEliminarCancion(@PathVariable("cancionId") Long cancionId) {
+		this.servicioCanciones.eliminaCancion(cancionId);
+		return "redirect:/canciones";
 	}
 	
 	

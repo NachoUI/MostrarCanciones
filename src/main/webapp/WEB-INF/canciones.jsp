@@ -43,6 +43,8 @@
 			Agregar
 		</button>	
 		</form>
+		
+		<a href="/artistas" class="btn btn-link mt-3">Ir a artistas</a>
 	</div>
 </div>
 

@@ -100,7 +100,7 @@ public class ControladorCanciones {
 	  
 	        Cancion nuevaCancion = new Cancion();
 	        nuevaCancion.setTitulo(cancionExistente.getTitulo());
-	        nuevaCancion.setBanda(cancionExistente.getBanda());
+	        nuevaCancion.setArtista(cancionExistente.getArtista());
 	        nuevaCancion.setAlbum(cancionExistente.getAlbum());
 	        nuevaCancion.setGenero(cancionExistente.getGenero());
 	        nuevaCancion.setIdioma(cancionExistente.getIdioma());
